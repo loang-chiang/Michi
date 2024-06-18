@@ -36,12 +36,8 @@
         margin-top: 10px;
     }
 
-    #game-over {
+    #gameover {
         /* by default hide game-over */
-        display: none;
-    }
-
-    #setup {
         display: none;
     }
 
@@ -55,10 +51,10 @@
 
     .player-info {
         width: 100px;
-        height: 100px;
+        height: 120px;
         border: 2px solid black;
         display: grid;
-        grid-template: 50px / 100px;
+        grid-template: 40px / 100px;
     }
 
     #player-1-info {
@@ -67,6 +63,12 @@
 
     .player-info div {
         border: 2px solid black;
+    }
+
+    .player-name {
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
 
@@ -85,5 +87,17 @@
 
     p {
         text-align: center;
+    }
+
+    .fa-paw {
+        color: purple;
+    }
+
+    .fa-cat {
+        color: pink;
+    }
+
+    i {
+        font-size: 30px;
     }
 

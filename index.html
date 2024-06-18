@@ -31,19 +31,19 @@
 
     <div id="players-info">
         <div class="player-info" id="player-1-info">
-            <div id="player-1-name">
-                <!-- here goes the player's name -->
-            </div>
-            <div class="player-icon">
-                <i class="fa-solid fa-paw"></i>
-            </div>
-        </div>
-        <div class="player-info" id="player-2-info">
-            <div id="player-2-name">
+            <div class="player-name" id="player-1-name">
                 <!-- here goes the player's name -->
             </div>
             <div class="player-icon">
                 <i class="fa-solid fa-cat"></i>
+            </div>
+        </div>
+        <div class="player-info" id="player-2-info">
+            <div class="player-name" id="player-2-name">
+                <!-- here goes the player's name -->
+            </div>
+            <div class="player-icon">
+                <i class="fa-solid fa-paw"></i>
             </div>
         </div>
     </div>
@@ -54,19 +54,19 @@
 
         <div>
             <label for="player-1">Player One name:</label>
-            <input type="text" id="player-1" minlength="1" maxlength="10">
+            <input type="text" id="player-1">
         </div>
         <div>
             <label for="player-2">Player Two name:</label>
-            <input type="text" id="player-2" minlength="1" maxlength="10">
+            <input type="text" id="player-2">
         </div>
 
         <button id="play">Play!</button>
     </dialog>
 
     <!-- only shown when the game ends -->
-    <dialog id="game-over">
-        <div>
+    <dialog id="gameover">
+        <div id="gameover-msg">
             <!-- here goes the winner / draw message -->
         </div>
         <button id="again">Play again?</button>
