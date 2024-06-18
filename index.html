@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- connect to js and css files -->
+    <script type="module" src="script.js"></script>
+    <link href="styles.css" rel="stylesheet">
+
+    <!-- connect to font awesome for icons -->
+    <script src="https://kit.fontawesome.com/d6aec18c0b.js" crossorigin="anonymous"></script>
+
+    <title>Michi</title>
+</head>
+<body>
+    <h1>Michi</h1>
+
+    <div id="gameboard">
+        <div class="square" id="1"></div>
+        <div class="square" id="2"></div>
+        <div class="square" id="3"></div>
+        <div class="square" id="4"></div>
+        <div class="square" id="5"></div>
+        <div class="square" id="6"></div>
+        <div class="square" id="7"></div>
+        <div class="square" id="8"></div>
+        <div class="square" id="9"></div>
+    </div>
+
+    <div id="players-info">
+        <div class="player-info" id="player-1-info">
+            <div id="player-1-name">
+                <!-- here goes the player's name -->
+            </div>
+            <div class="player-icon">
+                <i class="fa-solid fa-paw"></i>
+            </div>
+        </div>
+        <div class="player-info" id="player-2-info">
+            <div id="player-2-name">
+                <!-- here goes the player's name -->
+            </div>
+            <div class="player-icon">
+                <i class="fa-solid fa-cat"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- only shown when setting up the game -->
+    <dialog id="setup">
+        <p>Welcome to Michi!</p>
+
+        <div>
+            <label for="player-1">Player One name:</label>
+            <input type="text" id="player-1" minlength="1" maxlength="10">
+        </div>
+        <div>
+            <label for="player-2">Player Two name:</label>
+            <input type="text" id="player-2" minlength="1" maxlength="10">
+        </div>
+
+        <button id="play">Play!</button>
+    </dialog>
+
+    <!-- only shown when the game ends -->
+    <dialog id="game-over">
+        <div>
+            <!-- here goes the winner / draw message -->
+        </div>
+        <button id="again">Play again?</button>
+    </dialog>
+
+
+</body>
+</html>

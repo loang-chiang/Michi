@@ -1,0 +1,89 @@
+/* change box-sizing */
+    *, *::before, *::after {
+        box-sizing: border-box;
+    }
+
+
+/* GAMEBOARD STYLING */
+    #gameboard {
+        max-width: fit-content;
+        margin: auto;
+        padding-top: 30px;
+        padding-bottom: 70px;
+        display: grid;
+        grid-template: repeat(3, 100px) / repeat(3, 100px);
+    }
+
+    .square {
+        border: 2px solid black;
+    }
+
+
+/* SETUP AND GAMEOVER MESSAGES STYLING */
+    dialog {
+        border: 2px solid black;
+        display: block;
+
+        /* centers the div */
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+    }
+
+    dialog > * {
+        margin-top: 10px;
+    }
+
+    #game-over {
+        /* by default hide game-over */
+        display: none;
+    }
+
+    #setup {
+        display: none;
+    }
+
+
+/* PLAYERS INFO STYLING */
+    #players-info {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .player-info {
+        width: 100px;
+        height: 100px;
+        border: 2px solid black;
+        display: grid;
+        grid-template: 50px / 100px;
+    }
+
+    #player-1-info {
+        margin-right: 40px;
+    }
+
+    .player-info div {
+        border: 2px solid black;
+    }
+
+
+/* GENERAL STYLING */
+    h1 {
+        text-align: center;
+        padding-top: 20px;
+    }
+
+    /* allows the icons to be centered */
+    .player-icon, .square {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    p {
+        text-align: center;
+    }
+
