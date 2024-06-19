@@ -30,16 +30,35 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // when the user clicks on a square
     document.querySelectorAll('.square').forEach(sqr => {
-        sqr.onclick = function() {
-            if (sqr.innerHTML === "" && playing) {  // checks that the square is empty and the game is on
+        let choice = false;
+
+        sqr.onclick = function() {  // when the user clicks on a square
+            if (sqr.dataset.val === "" && playing) {  // checks that the square is empty and the game is on
+                choice = true;
                 if (player1Turn) {
                     squareClicked(sqr, player1);
                 }
                 else {
                     squareClicked(sqr, player2);
                 }
+            }
+        }
+
+        sqr.onmouseover = function() {  // shows user icon when they hover over a square
+            if (sqr.dataset.val === "" && playing && !choice) {
+                if (player1Turn) {
+                    sqr.innerHTML = '<i id="opaque-i" class="fa-solid fa-cat"></i>'
+                }
+                else {
+                    sqr.innerHTML = '<i id="opaque-i" id="" class="fa-solid fa-paw"></i>'
+                }
+            }
+        }
+
+        sqr.onmouseout = function() {
+            if (sqr.dataset.val === "" && playing && !choice) {
+                sqr.innerHTML = '';
             }
         }
     })
@@ -86,15 +105,18 @@ function squareClicked(sqr, player) {  // triggered when the user clicks an empt
 
     if (player === player1) {
         sqr.innerHTML = '<i class="fa-solid fa-cat"></i>';  // adds icon
+        sqr.dataset.val = "cat";
         player1Turn = false;  // switches turn
     }
     else {
         sqr.innerHTML = '<i class="fa-solid fa-paw"></i>';  // adds icon
+        sqr.dataset.val = "paw";
         player1Turn = true;  // switches turn
     }
 
     checkWinner();  // calls the function to check is someone has won
 }
+
 
 function checkWinner() {  // checks if and who won the game!
     console.log("Running checkWinner function!")
@@ -134,6 +156,7 @@ function checkWinner() {  // checks if and who won the game!
         }
     }
 }
+
 
 function restartGame() {  // clears everything for a new game
     for (let player of [player1, player2]) {

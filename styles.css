@@ -121,6 +121,10 @@
         font-size: 30px;
     }
 
+    #opaque-i {
+        opacity: 50%;
+    }
+
     #backdrop {
         position: fixed;
         top: 0;
