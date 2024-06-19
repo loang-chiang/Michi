@@ -15,7 +15,7 @@
     <title>Michi</title>
 </head>
 <body>
-    <h1>Michi</h1>
+    <h1>m i c h i</h1>
 
     <div id="gameboard">
         <div class="square" id="1"></div>
@@ -50,18 +50,20 @@
 
     <!-- only shown when setting up the game -->
     <dialog id="setup">
-        <p>Welcome to Michi!</p>
+        <h3>welcome to michi!</h3>
 
         <div>
-            <label for="player-1">Player One name:</label>
+            <label for="player-1">player one name:</label>
             <input type="text" id="player-1">
         </div>
         <div>
-            <label for="player-2">Player Two name:</label>
+            <label for="player-2">player two name:</label>
             <input type="text" id="player-2">
         </div>
 
-        <button id="play">Play!</button>
+        <button id="play">play!</button>
+
+        <!-- this is where #setup-error-msg would go -->
     </dialog>
 
     <!-- only shown when the game ends -->
@@ -69,7 +71,7 @@
         <div id="gameover-msg">
             <!-- here goes the winner / draw message -->
         </div>
-        <button id="again">Play again?</button>
+        <button id="again">play again?</button>
     </dialog>
 
 

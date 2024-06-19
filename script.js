@@ -2,18 +2,30 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     // when the user starts playing
+    let errorMsg = false;
     document.querySelector("#play").onclick = function() {
         let player1name = document.querySelector("#player-1").value;
         let player2name = document.querySelector("#player-2").value;
 
-        if (player1name.length > 1 && player1name.length <= 10 && player2name.length > 1 && player2name.length <= 10) {
+        if (player1name.length > 1 && player1name.length <= 9 && player2name.length > 1 && player2name.length <= 9
+            && player1name !== player2name) {  // checks lengths and that the names differ
             player1.name = player1name;
             player2.name = player2name;
-            document.querySelector("#player-1-name").innerHTML = player1name;
-            document.querySelector("#player-2-name").innerHTML = player2name;
+            document.querySelector("#player-1-name").innerHTML = `<p><strong>${player1name}</strong><p>`;
+            document.querySelector("#player-2-name").innerHTML = `<p><strong>${player2name}</strong><p>`;
 
             document.querySelector('#setup').style.display = "none";
             playing = true;
+        }
+        else {
+            if (!errorMsg) {
+                let msg = document.createElement('div');
+                msg.classList.add('setup-error-msg');
+                msg.innerHTML = "names must be between 1 and 9 characters, and can not match!";
+                document.querySelector("#setup").appendChild(msg);
+                document.querySelector("#setup").style.height = "280px";
+                errorMsg = true;
+            }
         }
     }
 
@@ -95,7 +107,7 @@ function checkWinner() {  // checks if and who won the game!
             if (win.every(element => player.gameArray.includes(element))) {
                 playing = false;
                 console.log("winner!");
-                document.querySelector("#gameover-msg").innerHTML = `Congratulations! ${player.name} has won!`;
+                document.querySelector("#gameover-msg").innerHTML = `congratulations! ${player.name} has won!`;
                 gameover.style.display = "block";
                 winner = true;
             }
@@ -114,13 +126,13 @@ function checkWinner() {  // checks if and who won the game!
         }  
         if (!isEmptyFound) {
             playing = false;
-            document.querySelector("#gameover-msg").innerHTML = `It's a draw!`;
+            document.querySelector("#gameover-msg").innerHTML = `it's a draw!`;
             gameover.style.display = "block";
         }
     }
 }
 
-function restartGame() {
+function restartGame() {  // clears everything for a new game
     for (let player of [player1, player2]) {
         player.name = "";
         player.gameArray = [];
@@ -139,6 +151,15 @@ function restartGame() {
     document.querySelector("#player-1-name").innerHTML = "";
     document.querySelector("#player-2-name").innerHTML = "";
 
+    let setup = document.querySelector('#setup')
+
+    // delete error message if it exists
+    let error = document.querySelector(".setup-error-msg");
+    if (error !== null) {
+        setup.lastElementChild.remove();
+        setup.style.height = "210px";
+    }
+
     document.querySelector('#gameover').style.display = "none";
-    document.querySelector('#setup').style.display = "block";
+    setup.style.display = "block";
 }
