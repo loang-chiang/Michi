@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
             document.querySelector("#player-2-name").innerHTML = `<p><strong>${player2name}</strong><p>`;
 
             document.querySelector('#setup').style.display = "none";
+            document.querySelector('#backdrop').style.display = "none";
             playing = true;
         }
         else {
@@ -108,6 +109,7 @@ function checkWinner() {  // checks if and who won the game!
                 playing = false;
                 console.log("winner!");
                 document.querySelector("#gameover-msg").innerHTML = `congratulations! ${player.name} has won!`;
+                document.querySelector('#backdrop').style.display = "block";
                 gameover.style.display = "block";
                 winner = true;
             }
@@ -127,6 +129,7 @@ function checkWinner() {  // checks if and who won the game!
         if (!isEmptyFound) {
             playing = false;
             document.querySelector("#gameover-msg").innerHTML = `it's a draw!`;
+            document.querySelector('#backdrop').style.display = "block";
             gameover.style.display = "block";
         }
     }
@@ -161,5 +164,6 @@ function restartGame() {  // clears everything for a new game
     }
 
     document.querySelector('#gameover').style.display = "none";
+    document.querySelector('#backdrop').style.display = "block";
     setup.style.display = "block";
 }

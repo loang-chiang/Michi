@@ -32,6 +32,8 @@
         right: 0;
         top: 0;
         bottom: 0;
+
+        z-index: 2;  /* so it's on top of the backdrop */
     }
 
     dialog > * {
@@ -119,6 +121,17 @@
         font-size: 30px;
     }
 
+    #backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #fcfcf0;
+        opacity: 70%;
+        z-index: 1; /* or higher if needed */
+    }
+
     body {
         background-color: #fcfcf0;
     }
@@ -126,4 +139,3 @@
     * {
         font-family: "Courier New";
     }
-
