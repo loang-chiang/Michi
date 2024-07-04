@@ -68,7 +68,7 @@
         height: 120px;
         display: grid;
         gap: 4px;
-        grid-template: 40px 70px / 100px;
+        grid-template: 40px 60px / 100px;
     }
 
     #player-1-info {
@@ -83,6 +83,23 @@
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+
+    .player-score-icon {
+        width: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between; /* or 'center' if you want them centered */
+    }
+
+    .player-score-icon * {
+        width: 50px;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .player-score-icon h1 {
+        padding-top: 3px;
     }
 
 

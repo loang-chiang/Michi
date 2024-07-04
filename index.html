@@ -18,15 +18,15 @@
     <h1>m i c h i</h1>
 
     <div id="gameboard">
-        <div class="square" data-val="" id="1"></div>
-        <div class="square" data-val="" id="2"></div>
-        <div class="square" data-val="" id="3"></div>
-        <div class="square" data-val="" id="4"></div>
-        <div class="square" data-val="" id="5"></div>
-        <div class="square" data-val="" id="6"></div>
-        <div class="square" data-val="" id="7"></div>
-        <div class="square" data-val="" id="8"></div>
-        <div class="square" data-val="" id="9"></div>
+        <div class="square" data-val="" data-chosen="false" id="1"></div>
+        <div class="square" data-val="" data-chosen="false" id="2"></div>
+        <div class="square" data-val="" data-chosen="false" id="3"></div>
+        <div class="square" data-val="" data-chosen="false" id="4"></div>
+        <div class="square" data-val="" data-chosen="false" id="5"></div>
+        <div class="square" data-val="" data-chosen="false" id="6"></div>
+        <div class="square" data-val="" data-chosen="false" id="7"></div>
+        <div class="square" data-val="" data-chosen="false" id="8"></div>
+        <div class="square" data-val="" data-chosen="false" id="9"></div>
     </div>
 
     <div id="players-info">
@@ -34,7 +34,8 @@
             <div class="player-name" id="player-1-name">
                 <!-- here goes the player's name -->
             </div>
-            <div class="player-icon">
+            <div class="player-score-icon">
+                <h1 id="player-1-score" class="player-score">0</h1>
                 <i class="fa-solid fa-cat"></i>
             </div>
         </div>
@@ -42,7 +43,8 @@
             <div class="player-name" id="player-2-name">
                 <!-- here goes the player's name -->
             </div>
-            <div class="player-icon">
+            <div class="player-score-icon">
+                <h1 id="player-2-score" class="player-score">0</h1>
                 <i class="fa-solid fa-paw"></i>
             </div>
         </div>
@@ -71,7 +73,8 @@
         <div id="gameover-msg">
             <!-- here goes the winner / draw message -->
         </div>
-        <button id="again">play again?</button>
+        <button id="again">another round?</button>
+        <button id="new">new game</button>
     </dialog>
 
     <!-- only used when the menus are being shown -->

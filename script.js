@@ -31,11 +31,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     document.querySelectorAll('.square').forEach(sqr => {
-        let choice = false;
-
         sqr.onclick = function() {  // when the user clicks on a square
             if (sqr.dataset.val === "" && playing) {  // checks that the square is empty and the game is on
-                choice = true;
+                sqr.dataset.chosen = "true";
                 if (player1Turn) {
                     squareClicked(sqr, player1);
                 }
@@ -46,25 +44,35 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         sqr.onmouseover = function() {  // shows user icon when they hover over a square
-            if (sqr.dataset.val === "" && playing && !choice) {
+            if (sqr.dataset.val === "" && sqr.dataset.chosen === "false" && playing) {
                 if (player1Turn) {
                     sqr.innerHTML = '<i id="opaque-i" class="fa-solid fa-cat"></i>'
                 }
                 else {
                     sqr.innerHTML = '<i id="opaque-i" id="" class="fa-solid fa-paw"></i>'
                 }
+                sqr.querySelector('i').onmouseover = function(event) {
+                    event.stopPropagation();
+                }
             }
         }
 
-        sqr.onmouseout = function() {
-            if (sqr.dataset.val === "" && playing && !choice) {
-                sqr.innerHTML = '';
+        sqr.onmouseout = function(event) {
+            if (event.relatedTarget != sqr.querySelector('i')) {  // solves bug where icon disappears when over it
+                if (sqr.dataset.val === "" && sqr.dataset.chosen === "false" && playing) {
+                    sqr.innerHTML = '';
+                }
             }
         }
     })
 
-    // when the game ends and the user wants to restart
+    // when the game ends and the user wants a new round
     document.querySelector("#again").onclick = function() {
+        newRound();
+    }
+
+    // when the game ends and the user wants to restart
+    document.querySelector("#new").onclick = function() {
         restartGame();
     }
 })
@@ -74,13 +82,17 @@ document.addEventListener('DOMContentLoaded', function() {
 let playing = false;
 
 const player1 = {
+    number: '1',
     name: document.querySelector('#player-1').value,
-    gameArray: []
+    gameArray: [],
+    points: 0
 };
 
 const player2 = {
+    number: '2',
     name: document.querySelector('#player-2').value,
-    gameArray: []
+    gameArray: [],
+    point: 0
 };
 
 const winCombos = [  // all possible winnning combinations
@@ -134,6 +146,10 @@ function checkWinner() {  // checks if and who won the game!
                 document.querySelector('#backdrop').style.display = "block";
                 gameover.style.display = "block";
                 winner = true;
+
+                // changes user's points
+                player.points += 1;
+                document.querySelector(`#player-${player.number}-score`).textContent = player.points;
             }
         }
     }
@@ -158,9 +174,8 @@ function checkWinner() {  // checks if and who won the game!
 }
 
 
-function restartGame() {  // clears everything for a new game
+function newRound() {  // clears some stuff for a new round
     for (let player of [player1, player2]) {
-        player.name = "";
         player.gameArray = [];
     }
     player1Turn = true;
@@ -169,6 +184,30 @@ function restartGame() {  // clears everything for a new game
     let squares = document.querySelectorAll('.square');
     for (let square of squares) {
         square.innerHTML = "";
+        square.dataset.val = "";
+        square.dataset.chosen = "false";
+    }
+
+    document.querySelector('#gameover').style.display = "none";
+    document.querySelector('#backdrop').style.display = "none";
+    playing = true;
+}
+
+
+function restartGame() {  // clears everything for a new game
+    for (let player of [player1, player2]) {
+        player.name = "";
+        player.gameArray = [];
+        player.points = 0;
+    }
+    player1Turn = true;
+
+    // clears all the squares
+    let squares = document.querySelectorAll('.square');
+    for (let square of squares) {
+        square.innerHTML = "";
+        square.dataset.val = "";
+        square.dataset.chosen = "false";
     }
 
     document.querySelector("#player-1").value = "";
@@ -176,6 +215,9 @@ function restartGame() {  // clears everything for a new game
 
     document.querySelector("#player-1-name").innerHTML = "";
     document.querySelector("#player-2-name").innerHTML = "";
+
+    document.querySelector(`#player-1-score`).textContent = "0";
+    document.querySelector(`#player-2-score`).textContent = "0";
 
     let setup = document.querySelector('#setup')
 
